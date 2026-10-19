@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orbit</title>
+  <meta name="description" content="Orbit is a calm, general-purpose AI chat. Ask questions, draft, brainstorm and follow up.">
+  <meta name="theme-color" content="#fbf7ee">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='3' width='26' height='26' fill='%23c1121f'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' text-anchor='middle' fill='%23fffcf5'%3EO%3C/text%3E%3C/svg%3E">
+  <script>
+    /* Apply the saved tone before first paint to avoid a flash. */
+    try { var t = localStorage.getItem('orbit-theme'); if (t === 'parchment') document.documentElement.dataset.theme = 'parchment'; } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#composer-input">Skip to message box</a>
+
+  <main class="shell">
+    <section class="scene-col" aria-labelledby="orbit-title">
+      <div class="reveal">
+        <p class="label"><span class="dash" aria-hidden="true"></span>General assistant</p>
+        <h1 id="orbit-title">Orbit</h1>
+      </div>
+
+      <div class="scene reveal" style="--d:.08s">
+        <p class="bubble" id="greeting">Hey, I’m Orbit. What’s on your mind?</p>
+        <img class="creature" src="assets/orbit.webp" width="882" height="774"
+             alt="A small cream creature with blue feathered fins holds an airmail envelope while a paper plane flies away.">
+      </div>
+    </section>
+
+    <section class="chat-col" aria-label="Chat with Orbit">
+      <div class="chat reveal" style="--d:.16s">
+        <div class="stripe" aria-hidden="true"></div>
+
+        <header class="chat-head">
+          <p class="status mono" id="status" role="status" aria-live="polite">Ready</p>
+          <div class="tools">
+            <button type="button" class="btn" id="new-chat">New chat</button>
+            <button type="button" class="btn" id="theme-toggle" aria-pressed="false" aria-label="Switch page tone">
+              Tone: <span id="theme-name">Paper</span>
+            </button>
+          </div>
+        </header>
+
+        <div class="log" id="log" role="log" aria-live="polite" aria-relevant="additions" aria-label="Conversation" tabindex="0">
+          <div class="intro" id="intro">
+            <p class="label"><span class="dash" aria-hidden="true"></span>Try asking</p>
+            <ul class="suggest" id="suggest">
+              <li><button type="button" data-q="Explain how vaccines train the immune system, in plain language.">Explain how vaccines train the immune system<span class="arrow" aria-hidden="true">→</span></button></li>
+              <li><button type="button" data-q="Help me write a warm, concise email asking a colleague to reschedule a meeting.">Write an email asking to reschedule a meeting<span class="arrow" aria-hidden="true">→</span></button></li>
+              <li><button type="button" data-q="Brainstorm ten names for a small neighbourhood bookshop that also serves tea.">Brainstorm names for a bookshop with a tea bar<span class="arrow" aria-hidden="true">→</span></button></li>
+              <li><button type="button" data-q="What is the difference between a stock and a bond? Keep it simple, with an example.">What is the difference between a stock and a bond?<span class="arrow" aria-hidden="true">→</span></button></li>
+            </ul>
+          </div>
+        </div>
+
+        <form class="composer" id="composer" autocomplete="off">
+          <label class="sr-only" for="composer-input">Message Orbit</label>
+          <textarea id="composer-input" rows="1" maxlength="2000" placeholder="Write a message" enterkeyhint="send"></textarea>
+          <div class="composer-row">
+            <p class="hint mono" id="hint">Enter to send · Shift + Enter for a new line</p>
+            <span class="count mono" id="count" aria-hidden="true"></span>
+            <button type="submit" class="btn" id="send">Send <span class="arrow" aria-hidden="true">→</span></button>
+          </div>
+        </form>
+      </div>
+      <p class="fine mono">Orbit can make mistakes. Please check anything important.</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
